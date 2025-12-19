@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Técnico - Desenvolvedor Backend Pleno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e8f4f8;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #34495e;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .context-box {
+            background: #ecf0f1;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .context-box p {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        table tr:last-child td {
+            border-bottom: 2px solid #3498db;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c0392b;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        pre code {
+            color: #ecf0f1;
+            background: none;
+            padding: 0;
+        }
+
+        .formula {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .note {
+            background: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .note p {
+            margin: 0;
+            color: #2e7d32;
+        }
+
+        .criteria-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .criteria-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .criteria-item strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .criteria-item span {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .emphasis {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .route-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #1565c0;
+            font-weight: 600;
+            margin: 15px 0;
+            border-left: 4px solid #1976d2;
+        }
+
+        .delivery-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .delivery-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #34495e;
+        }
+
+        .delivery-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .time-estimate {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+        }
+
+        .time-estimate strong {
+            color: #e65100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        page-break-after {
+            page-break-after: always;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 40px;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+                </svg>
+                Teste Técnico - Desenvolvedor Backend Pleno
+            </h1>
+        </header>
+
+        <!-- OBJETIVO -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4M12 8h.01"></path>
+                </svg>
+                Objetivo
+            </h2>
+            <p>Desenvolver uma rota de API REST que retorne indicadores de performance (KPIs) de manutenção agrupados por <span class="emphasis">família de equipamentos</span>.</p>
+        </section>
+
+        <!-- CONTEXTO -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M9 11l3 3L22 4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Contexto
+            </h2>
+            <p>Você está trabalhando em um sistema de gestão de manutenção. A empresa precisa de um relatório que mostre os principais indicadores de disponibilidade e performance dos equipamentos.</p>
+
+            <h3>Indicadores a Calcular:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicador</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>DF</strong></td>
+                        <td>Disponibilidade Física (%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MTBF</strong></td>
+                        <td>Mean Time Between Failures - Tempo Médio Entre Falhas (horas)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MTTR</strong></td>
+                        <td>Mean Time To Repair - Tempo Médio Para Reparo (horas)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Paradas</strong></td>
+                        <td>Quantidade total de ordens de serviço (paradas)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- CONEXÃO BANCO DE DADOS -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+                Conexão com o Banco de Dados
+            </h2>
+            
+            <div class="context-box" style="background: #e8f5e9; border-left-color: #4caf50;">
+                <p style="margin-bottom: 15px;"><strong>⚠️ ATENÇÃO:</strong> Use estas credenciais apenas para o teste. Não compartilhe!</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parâmetro</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Host</strong></td>
+                        <td><code>smartnewdb-do-user-14494582-0.c.db.ondigitalocean.com</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Port</strong></td>
+                        <td><code>25060</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td><code>sofman</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>User</strong></td>
+                        <td><code>user_test</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Password</strong></td>
+                        <td><code>AVNS_CqsbNG4s6FInXFBnYOx</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ID Cliente (filtro)</strong></td>
+                        <td><code>405</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>String de Conexão (Prisma)</h3>
+            <pre><code>DATABASE_URL="mysql://user_test:AVNS_CqsbNG4s6FInXFBnYOx@smartnewdb-do-user-14494582-0.c.db.ondigitalocean.com:25060/sofman"</code></pre>
+
+            <div class="note">
+                <p><strong>Nota:</strong> Utilize <code>id_cliente = 405</code> como filtro nas suas consultas para acessar apenas os dados do cliente de teste.</p>
+            </div>
+        </section>
+
+        <!-- BANCO DE DADOS -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M3 5v14a9 3 0 0 0 18 0V5"></path>
+                </svg>
+                Tabelas Disponíveis
+            </h2>
+
+            <h3>1. <code>sofman_prospect_escala_trabalho</code> (Escala de Trabalho dos Equipamentos)</h3>
+            <p>Define os horários programados de funcionamento de cada equipamento.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INT</td>
+                        <td>ID do registro</td>
+                    </tr>
+                    <tr>
+                        <td>id_equipamento</td>
+                        <td>INT</td>
+                        <td>FK para equipamento</td>
+                    </tr>
+                    <tr>
+                        <td>data_programada</td>
+                        <td>DATE</td>
+                        <td>Data da programação</td>
+                    </tr>
+                    <tr>
+                        <td>inicio</td>
+                        <td>TIME</td>
+                        <td>Hora de início do turno</td>
+                    </tr>
+                    <tr>
+                        <td>termino</td>
+                        <td>TIME</td>
+                        <td>Hora de término do turno</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. <code>sofman_apontamento_paradas</code> (Registro de Paradas)</h3>
+            <p>Registra quando um equipamento parou e quando voltou a funcionar.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INT</td>
+                        <td>ID do registro</td>
+                    </tr>
+                    <tr>
+                        <td>id_ordem_servico</td>
+                        <td>INT</td>
+                        <td>FK para ordem de serviço</td>
+                    </tr>
+                    <tr>
+                        <td>id_equipamento</td>
+                        <td>INT</td>
+                        <td>FK para equipamento</td>
+                    </tr>
+                    <tr>
+                        <td>data_hora_stop</td>
+                        <td>DATETIME</td>
+                        <td>Data/hora que o equipamento parou</td>
+                    </tr>
+                    <tr>
+                        <td>data_hora_start</td>
+                        <td>DATETIME</td>
+                        <td>Data/hora que o equipamento voltou</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. <code>controle_de_ordens_de_servico</code> (Ordens de Serviço)</h3>
+            <p>Tabela principal de ordens de serviço.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>INT</td>
+                        <td>ID da ordem de serviço</td>
+                    </tr>
+                    <tr>
+                        <td>ID_cliente</td>
+                        <td>INT</td>
+                        <td>FK para cliente</td>
+                    </tr>
+                    <tr>
+                        <td>tipo_manutencao</td>
+                        <td>INT</td>
+                        <td>Tipo de manutenção (corretiva, preventiva, etc.)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4. <code>cadastro_de_equipamentos</code> (Equipamentos)</h3>
+            <p>Cadastro dos equipamentos.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>INT</td>
+                        <td>ID do equipamento</td>
+                    </tr>
+                    <tr>
+                        <td>id_cliente</td>
+                        <td>INT</td>
+                        <td>FK para cliente</td>
+                    </tr>
+                    <tr>
+                        <td>id_familia</td>
+                        <td>INT</td>
+                        <td>FK para família de equipamento</td>
+                    </tr>
+                    <tr>
+                        <td>equipamento_codigo</td>
+                        <td>VARCHAR</td>
+                        <td>Código do equipamento</td>
+                    </tr>
+                    <tr>
+                        <td>descricao</td>
+                        <td>VARCHAR</td>
+                        <td>Descrição do equipamento</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5. <code>cadastro_de_familias_de_equipamento</code> (Famílias)</h3>
+            <p>Agrupamento de equipamentos por família.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>INT</td>
+                        <td>ID da família</td>
+                    </tr>
+                    <tr>
+                        <td>ID_cliente</td>
+                        <td>INT</td>
+                        <td>FK para cliente</td>
+                    </tr>
+                    <tr>
+                        <td>familia</td>
+                        <td>VARCHAR</td>
+                        <td>Nome da família</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FÓRMULAS -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M10 3v4m0 4v4m0 4v4M6 9h4m4 0h4"></path>
+                </svg>
+                Fórmulas dos KPIs
+            </h2>
+
+            <h3>Disponibilidade Física (DF)</h3>
+            <div class="formula">
+DF = ((Tempo Previsto de Funcionamento - Tempo de Manutenção) / Tempo Previsto de Funcionamento) * 100
+            </div>
+
+            <h3>MTBF - Tempo Médio Entre Falhas</h3>
+            <div class="formula">
+MTBF = (Tempo Previsto de Funcionamento - Tempo de Manutenção) / Quantidade de Paradas
+            </div>
+
+            <h3>MTTR - Tempo Médio Para Reparo</h3>
+            <div class="formula">
+MTTR = Tempo de Manutenção / Quantidade de Paradas
+            </div>
+
+            <div class="note">
+                <p><strong>Nota:</strong> Caso a quantidade de paradas seja 0, use 1 para evitar divisão por zero.</p>
+            </div>
+        </section>
+
+        <!-- DESENVOLVIMENTO -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                O que você deve desenvolver
+            </h2>
+
+            <h3>Rota</h3>
+            <div class="route-box">
+GET /maintenance/reports/performance-indicator
+            </div>
+
+            <h3>Query Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parâmetro</th>
+                        <th>Tipo</th>
+                        <th>Obrigatório</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>startDate</td>
+                        <td>DATE</td>
+                        <td>Não</td>
+                        <td>Data inicial do período (default: 30 dias atrás)</td>
+                    </tr>
+                    <tr>
+                        <td>endDate</td>
+                        <td>DATE</td>
+                        <td>Não</td>
+                        <td>Data final do período (default: hoje)</td>
+                    </tr>
+                    <tr>
+                        <td>typeMaintenance</td>
+                        <td>STRING</td>
+                        <td>Não</td>
+                        <td>IDs dos tipos de manutenção separados por vírgula (ex: "1,2,3")</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Response Esperado</h3>
+            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "Familia": "COMPRESSORES",
+      "DF": 85.50,
+      "MTBF": 120.5,
+      "MTTR": 4.2,
+      "Paradas": 15,
+      "tempo_prev": 1800,
+      "tempo_corretiva": 63
+    },
+    {
+      "Familia": "BOMBAS",
+      "DF": 92.30,
+      "MTBF": 200.8,
+      "MTTR": 2.5,
+      "Paradas": 8,
+      "tempo_prev": 2000,
+      "tempo_corretiva": 20
+    }
+  ]
+}</code></pre>
+        </section>
+
+        <!-- REQUISITOS TÉCNICOS -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+                </svg>
+                Requisitos Técnicos
+            </h2>
+
+            <div class="delivery-list">
+                <li><strong>Framework:</strong> NestJS com TypeScript</li>
+                <li><strong>ORM:</strong> Prisma (pode usar <code>$queryRaw</code> para SQL puro)</li>
+                <li><strong>Validação:</strong> Use Zod para validar os query parameters</li>
+                <li><strong>Autenticação:</strong> A rota deve ser protegida com AuthGuard</li>
+                <li><strong>Padrão:</strong> Siga o padrão de repositórios do projeto</li>
+            </div>
+        </section>
+
+        <!-- DICAS -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Dicas
+            </h2>
+
+            <div class="delivery-list">
+                <li>O <strong>Tempo Previsto de Funcionamento</strong> é calculado a partir da escala de trabalho (<code>inicio</code> e <code>termino</code>)</li>
+                <li>O <strong>Tempo de Manutenção</strong> é calculado a partir dos registros de parada (<code>data_hora_stop</code> e <code>data_hora_start</code>)</li>
+                <li>Agrupe os resultados por <strong>família de equipamento</strong></li>
+                <li>Considere apenas datas dentro do período filtrado (<code>startDate</code> até <code>endDate</code>)</li>
+                <li>Considere apenas equipamentos do cliente autenticado (<code>clientId</code>)</li>
+            </div>
+        </section>
+
+        <!-- CRITÉRIOS DE AVALIAÇÃO -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Critérios de Avaliação
+            </h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critério</th>
+                        <th>Peso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cálculos corretos dos KPIs</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td>Estrutura e organização do código</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Uso correto do Prisma/SQL</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Validação dos inputs</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>Tratamento de edge cases (divisão por zero, datas nulas)</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>Tipagem TypeScript</td>
+                        <td>10%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- TEMPO ESTIMADO -->
+        <section>
+            <div class="time-estimate">
+                <strong>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#ff9800" style="display: inline-block; margin-right: 10px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Tempo Estimado: 4 horas
+                </strong>
+            </div>
+        </section>
+
+        <!-- ENTREGA -->
+        <section>
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#3498db">
+                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+                Entrega
+            </h2>
+
+            <div class="delivery-list">
+                <li>Crie o controller com a rota</li>
+                <li>Crie o método no repositório</li>
+                <li>Documente brevemente a lógica utilizada</li>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>Boa sorte! 🚀</p>
+            <p style="margin-top: 20px; color: #95a5a6; font-size: 0.85em;">Documento gerado para teste técnico de Backend</p>
+        </div>
+    </div>
+</body>
+</html>
