@@ -441,3 +441,7 @@ MTTR = Tempo de Manutenção / Quantidade de Paradas
 - **Tempo de Manutenção:** calculado a partir das paradas (`data_hora_stop` e `data_hora_start`).
 - Agrupe por **família de equipamento**.
 - Filtre por data (`startDate` até `endDate`) e cliente (`clientId`).
+
+
+## Prisma
+- Para iniciar o prisma nescessario usar o codigo 'npx prisma studio'
